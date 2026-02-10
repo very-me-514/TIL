@@ -1,0 +1,2 @@
+-- 추가 학습
+-- View, CTE, Window Functions, Partitions

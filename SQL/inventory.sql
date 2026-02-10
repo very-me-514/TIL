@@ -1,0 +1,45 @@
+후속 과제: DB 에 inventory 테이블을 추가하고 물건 항목을 추가
+
+Agent는 필요에 따라 DB에 존재하는 아이템을 조회하여 적절한 타이밍에 사용하길 권장해야함
+만약 사용자가 사용해서, Count 가 줄어드는 상황이라면 재고 관리도 Agent가 담당해야 함
+count 가 0 이상일 경우에는 사용 불가능
+
+CREATE TABLE inventory (
+    id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
+    count INTEGER NOT NULL CHECK (count >= 0)
+);
+
+
+select * from inventory;
+
+INSERT INTO inventory (name, count) VALUES
+-- 음식 관련
+('sealed_food_pack', 2),        -- 밀봉된 음식 (안전해 보이지만 인식 시 위험)
+('warm_liquid', 1),             -- 따뜻한 액체
+('unlabeled_snack', 3),         -- 표기 없는 간식
+('leftover_meal', 1),           -- 이전에 먹다 남은 음식
+
+-- 휴식 관련
+('thin_blanket', 1),            -- 얇은 담요
+('earplugs', 2),                -- 귀마개
+('dim_light_source', 1),        -- 약한 조명
+('hard_floor_space', 1),        -- 바닥 휴식 공간
+
+-- 이동 관련
+('hand_drawn_map', 1),          -- 손으로 그린 지도
+('direction_marker', 2),        -- 방향 표시 도구
+('temporary_pass', 1),          -- 일시 통행 허가
+('footwear', 1),                -- 신발 (이미 신고 있을 가능성 있음)
+
+-- 대화 관련
+('written_note', 2),            -- 메모지
+('predefined_phrase', 3),       -- 미리 정해진 문장
+('voice_recorder', 1),          -- 음성 기록 장치
+('question_token', 1),          -- 질문 허용 토큰
+
+-- 메타 / 위험 아이템
+('time_buffer', 1),             -- 시간을 벌어주는 것처럼 보이는 여유
+('observation_log', 1),         -- 관찰 기록물
+('confirmation_object', 0),     -- 확신을 주는 물건 (항상 소진 상태)
+('instruction_sheet', 0);    

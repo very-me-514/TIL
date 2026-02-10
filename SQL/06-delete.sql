@@ -1,0 +1,9 @@
+--06-delete.sql
+
+SELECT * FROM members;
+
+--테이블의 특정 데이터 삭제
+DELETE FROM members where id=2;
+
+--테이블의 데이터 모두 삭제
+DELETE FROM members;

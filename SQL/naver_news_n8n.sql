@@ -1,0 +1,19 @@
+CREATE TABLE naver_news (
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	title VARCHAR(300) NOT NULL DEFAULT '',
+	CONTENT TEXT NOT NULL DEFAULT '',
+	Section VARCHAR(10)NOT NULL DEFAULT ''
+);
+
+INSERT INTO naver_news (title, CONTENT, Section)
+VALUES ('테스트기사', '테스트  테스트', '테스트');
+
+SELECT * FROM naver_news;
+
+SELECT
+
+* FROM news
+WHERE title LIKE '%로봇%'
+LIMIT 5
+OFFSET 200
+ORDER BY ID
